@@ -1,16 +1,18 @@
-# **Final Project SAS 1 Youcode: Train Management in Console “Railway Manager”**
+# **Final Project SAS 1 Youcode: Train Management in Console "Railway Manager"**
 
 # **Introduction**
 
-You must develop a console application in **JavaScript with Node.js** to manage train routes and tickets.
+You must develop a console application in **JavaScript with Node.js** to
+manage train routes and tickets.
 
 The application works only in the terminal.
 
-User input must be handled using **prompt()** or Node.js native **readline** module.
+User input must be handled using **prompt()** or Node.js native
+**readline** module.
 
 Example with readline:
 
-```javascript
+``` javascript
 const readline = require('node:readline');
 const { stdin: input, stdout: output } = require('node:process');
 const rl = readline.createInterface({ input, output });
@@ -22,24 +24,26 @@ rl.question('What do you think of Node.js? ', (answer) => {
 
 Example with prompt-sync:
 
-**You need to install the package with: ‘npm install prompt-sync’**
+**You need to install the package with: 'npm install prompt-sync'**
 
-```javascript
+``` javascript
 var prompt = require('prompt-sync')();
 var n = prompt('How many more times? ');
 ```
 
-The data needed to complete the project is already provided. It contains the list of routes to use in the application.
+The data needed to complete the project is already provided. It contains
+the list of routes to use in the application.
 
 You must use this data as the working base.
 
-**Project data:** [https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985](https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985)
+**Project data:**
+<https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985>
 
-# **1\. Main menu**
+# **1. Main menu**
 
 When the program starts, display:
 
-```javascript
+``` javascript
 =================================
         RAILWAY MANAGER
 =================================
@@ -62,7 +66,7 @@ The program stops only when the user chooses:
 
 0\. Exit
 
-# **2\. Trips**
+# **2. Trips**
 
 Trips are **fixed** and already recorded in the program.
 
@@ -70,7 +74,7 @@ There is no request to create or calculate new trips.
 
 Example:
 
-```javascript
+``` javascript
 const trips = [
   {
     id: 1,
@@ -85,25 +89,26 @@ const trips = [
 ];
 ```
 
-**Data:** [https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985](https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985)
+**Data:**
+<https://gist.github.com/AzizBenMallouk/31e020b92fcc710a732fae0c2adec985>
 
 Each trip has:
 
-* an identifier;
-* a departure city;
-* a destination;
-* a departure time;
-* an arrival time;
-* a price;
-* a number of available seats.
+-   an identifier;
+-   a departure city;
+-   a destination;
+-   a departure time;
+-   an arrival time;
+-   a price;
+-   a number of available seats.
 
-# **3\. Display trips**
+# **3. Display trips**
 
 The user must be able to display all available trips.
 
 Example:
 
-```javascript
+``` javascript
 === AVAILABLE TRIPS ===
 
 #1 Safi → Youssoufia
@@ -119,37 +124,35 @@ Price: 30 DH
 Available seats: 50
 ```
 
-# **4\. Buy a ticket**
+# **4. Buy a ticket**
 
 The user enters:
 
-Passenger name:
-Trip ID:
+Passenger name: Trip ID:
 
 Example:
 
-Passenger name: Ahmed
-Trip ID: 3
+Passenger name: Ahmed Trip ID: 3
 
 The program must:
 
-1. find the corresponding trip;
-2. verify that the trip exists;
-3. verify that at least one seat is available;
-4. create a ticket;
-5. automatically assign a seat number;
-6. decrease the number of available seats;
-7. add the ticket to the tickets array.
+1.  find the corresponding trip;
+2.  verify that the trip exists;
+3.  verify that at least one seat is available;
+4.  create a ticket;
+5.  automatically assign a seat number;
+6.  decrease the number of available seats;
+7.  add the ticket to the tickets array.
 
 Tickets are stored in:
 
-```javascript
+``` javascript
 const tickets = [];
 ```
 
 Ticket example:
 
-```javascript
+``` javascript
 {
     id: 1,
     passengerName: "Ahmed",
@@ -173,7 +176,7 @@ Otherwise:
 
 Example:
 
-```javascript
+``` javascript
 Ticket purchased successfully.
 
 Ticket #1
@@ -183,13 +186,13 @@ Seat: 1
 Price: 90 DH
 ```
 
-# **5\. Display tickets**
+# **5. Display tickets**
 
 The program must display all registered tickets.
 
 Example:
 
-```javascript
+``` javascript
 === TICKETS ===
 
 Ticket #1
@@ -209,21 +212,21 @@ If no ticket exists:
 
 No tickets registered.
 
-# **6\. Cancel a ticket**
+# **6. Cancel a ticket**
 
 The user enters: **Ticket ID**
 
 The program must:
 
-1. find the ticket;
-2. verify that it exists;
-3. find the associated trip;
-4. delete the ticket;
-5. increase the number of available seats for the trip by 1.
+1.  find the ticket;
+2.  verify that it exists;
+3.  find the associated trip;
+4.  delete the ticket;
+5.  increase the number of available seats for the trip by 1.
 
 Example:
 
-```javascript
+``` javascript
 Ticket ID: 2
 
 Ticket cancelled successfully.
@@ -233,7 +236,7 @@ If the ticket does not exist:
 
 Ticket not found.
 
-# **7\. Search for a ticket**
+# **7. Search for a ticket**
 
 The application must allow searching for a ticket.
 
@@ -241,7 +244,7 @@ The application must allow searching for a ticket.
 
 Example:
 
-```javascript
+``` javascript
 Passenger name: Ahmed
 
 // The program displays all tickets belonging to Ahmed.
@@ -253,13 +256,14 @@ Seat: 2
 Price: 120 DH
 ```
 
-# **8\. Filter trips**
+# **8. Filter trips**
 
-Since the trips are already recorded, the program simply filters the trips array.
+Since the trips are already recorded, the program simply filters the
+trips array.
 
 The user can filter by departure city:
 
-```javascript
+``` javascript
 Departure city: Safi
 
 Result:
@@ -267,22 +271,23 @@ Safi → Youssoufia : 25 DH
 Safi → Marrakech : 90 DH
 ```
 
-# **9\. Sort trips**
+# **9. Sort trips**
 
 The user can sort by **lowest price first**.
 
 Example:
 
-```javascript
+``` javascript
 Safi → Youssoufia : 25 DH
 Youssoufia → Ben Guerir : 30 DH
 Safi → Marrakech : 90 DH
 Marrakech → Casablanca : 120 DH
 ```
 
-# **10\. Bonus — Statistics**
+# **10. Bonus --- Statistics**
 
-Once all main features are complete, the learner may add some statistics.
+Once all main features are complete, the learner may add some
+statistics.
 
 ### **Total number of tickets sold**
 
@@ -302,53 +307,45 @@ Example:
 
 Most sold trip:
 
-Safi → Marrakech
-7 tickets sold
+Safi → Marrakech 7 tickets sold
 
-# **11\. Technical constraints**
+# **11. Technical constraints**
 
 The project must be built in **JavaScript with Node.js**.
 
 The main concepts expected are:
 
-* variables and constants;
-* operators;
-* if / else;
-* switch;
-* for;
-* while;
-* functions;
-* arrays;
-* objects;
-* arrays of objects;
-* string manipulation.
+-   variables and constants;
+-   operators;
+-   if / else;
+-   switch;
+-   for;
+-   while;
+-   functions;
+-   arrays;
+-   objects;
+-   arrays of objects;
+-   string manipulation.
 
 JavaScript methods may be used, notably:
 
-push()
-splice()
-find()
-findIndex()
-includes()
-filter()
-map()
+push() splice() find() findIndex() includes() filter() map()
 
 The application must not use:
 
-* HTML;
-* CSS;
-* DOM;
-* browser;
-* frontend framework;
-* database.
+-   HTML;
+-   CSS;
+-   DOM;
+-   browser;
+-   frontend framework;
+-   database.
 
 All data remains in memory while the program is running.
 
-# **12\. Deliverables**
+# **12. Deliverables**
 
 You must provide:
 
-* the JavaScript file that runs the application;
-* a GitHub repository;
-* a commit history showing the progress of the work.
-
+-   the JavaScript file that runs the application;
+-   a GitHub repository;
+-   a commit history showing the progress of the work.
