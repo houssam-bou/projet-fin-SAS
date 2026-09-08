@@ -1,3 +1,4 @@
+let prompt = require("prompt-sync")();
 const trips = [
     {
         id: 1,
@@ -180,18 +181,40 @@ const trips = [
         availableSeats: 50
     }
 ];
+    let tickets =[];
 //<>=
-function displayTrips()
+// function displayTrips()
+// {
+//     console.log("=== AVAILABLE TRIPS ===");
+//     for (let i = 0; i < trips.length ; i++)
+//     {
+//         console.log("============================================");
+//         console.log(`#${trips[i].id} ${trips[i].departure} ==> ${trips[i].destination}`);
+//         console.log(`departure : ${trips[i].departureTime}`);
+//         console.log(`arrival : ${trips[i].arrivalTime}`);
+//         console.log(`price : ${trips[i].price}`);
+//         console.log(`Available seats : ${trips[i].availableSeats} `);
+//     }
+// }
+// displayTrips();
+function buyTicket()
 {
-    console.log("=== AVAILABLE TRIPS ===");
+    let passengerName = prompt("Enter passenger name : ");
+    let tripID = Number(prompt("Entrer Trip ID : "));
+    const ticket = {};
+    let findId = [];
     for (let i = 0; i < trips.length ; i++)
     {
-        console.log("============================================");
-        console.log(`#${trips[i].id} ${trips[i].departure} ==> ${trips[i].destination}`);
-        console.log(`departure : ${trips[i].departureTime}`);
-        console.log(`arrival : ${trips[i].arrivalTime}`);
-        console.log(`price : ${trips[i].price}`);
-        console.log(`Available seats : ${trips[i].availableSeats} `);
+        if (trips[i].id == tripID)
+        {
+            (trips[i].availableSeats <= 0) ? findId = trips[i] : `train is full .`;
+        }
+       else
+       {
+        return `trip not find !!`;
+       }
+        
     }
+    console.log(findId);
 }
-displayTrips();
+console.log(buyTicket());
