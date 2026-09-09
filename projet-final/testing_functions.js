@@ -55,17 +55,57 @@ function buyTicket(targetTrip, createTicket) {
 
     return createTicket(targetTrip, nameOfPassenger);
 }
-//<==>
 
-function displayTickets() {
+
+export function displayTickets() {
     console.log("=== TICKETS ===");
     for (let i = 0; i < tickets.length; i++) {
         console.log(`
     id : #${tickets[i].id}
     passenger name  : ${tickets[i].passengerName}
-    trip Id : ${tickets[i].tripId}
+    trip Id : ${tickets[i].depart} ==> ${tickets[i].dest}
     seatNumber : ${tickets[i].seatNumber}
     price : ${tickets[i].price}`);
     }
 }
+
+function cancelTicket()
+{
+    let ticketId = Number(prompt("enter ticket ID : "));
+    let generatedTicket;
+    for (let i = 0; i < tickets.length ; i++)
+    {
+        if (tickets[i].id == ticketId)
+        {
+            generatedTicket = tickets[i];
+            tickets.splice(i, 1);
+            break;
+        }
+        
+    }
+    if (!generatedTicket)
+    {
+        return "Ticket not found.";
+    }
+    let trip = getTripId(generatedTicket.tripId);
+    trip.availableSeats++;
+    return "ticket cancelled successfully";
+
+}
 displayTickets();
+console.log(cancelTicket());
+
+
+//<==>
+function searchForTicket()
+{
+    let searchingTicket = [];
+    for (let i = 0; i < tickets.length ;i++)
+    {
+        if(nameOfPassenger == tickets[i].passengerName)
+        {
+            searchingTicket.push(tickets[i]);
+        }
+    }
+    return searchingTicket;
+}

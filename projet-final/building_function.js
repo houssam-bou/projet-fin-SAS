@@ -214,6 +214,8 @@ export function createTicket(targetTrip, nameOfPassenger) {
         id: tickets.length + 1,
         passengerName: nameOfPassenger,
         tripId: targetTrip.id,
+        depart: targetTrip.departure,
+        dest: targetTrip.destination,
         seatNumber: 51 - targetTrip.availableSeats,
         price: targetTrip.price
     };
@@ -226,6 +228,7 @@ export function createTicket(targetTrip, nameOfPassenger) {
     id : #${ticket.id}
     passenger name  : ${nameOfPassenger}
     trip Id : ${ticket.tripId}
+    trip : ${ticket.depart} ==> ${ticket.dest}
     seatNumber : ${ticket.seatNumber}
     price : ${ticket.price}`;
 }
@@ -248,8 +251,53 @@ export function displayTickets() {
         console.log(`
     id : #${tickets[i].id}
     passenger name  : ${tickets[i].passengerName}
-    trip Id : ${tickets[i].tripId}
+    trip id : ${tickets[i].tripId}
+    trip : ${tickets[i].depart} ==> ${tickets[i].dest}
     seatNumber : ${tickets[i].seatNumber}
     price : ${tickets[i].price}`);
     }
+}
+export function cancelTicket() {
+    let ticketId = Number(prompt("enter ticket ID : "));
+    let generatedTicket;
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i].id == ticketId) {
+            generatedTicket = tickets[i];
+            tickets.splice(i, 1);
+            break;
+        }
+
+    }
+    if (!generatedTicket) {
+        return "Ticket not found.";
+    }
+    let trip = getTripId(generatedTicket.tripId);
+    trip.availableSeats++;
+    return `ticket ${ticketId} cancelled successfully .`;
+}
+export function searchForTicket() {
+    let nameOfPassenger = prompt("enter the passenger name : ");
+    let searchingTicket = [];
+    for (let i = 0; i < tickets.length; i++) {
+        if (nameOfPassenger == tickets[i].passengerName) {
+            searchingTicket.push(tickets[i]);
+        }
+        if (searchingTicket.length == 0) {
+            return "Ticket not found.";
+        }
+    }
+    let result = "";
+
+    for (let i = 0; i < searchingTicket.length; i++) {
+    result += `
+===================================
+    id : #${searchingTicket[i].id}
+    passenger name : ${searchingTicket[i].passengerName}
+    trip id : ${searchingTicket[i].tripId}
+    trip : ${searchingTicket[i].depart} ==> ${searchingTicket[i].dest}
+    seatNumber : ${searchingTicket[i].seatNumber}
+    price : ${searchingTicket[i].price}
+    `
+    }
+    return result;
 }
