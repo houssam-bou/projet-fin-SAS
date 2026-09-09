@@ -4,6 +4,7 @@ import { trips } from "./building_function.js";
 
 
 let choix;
+let tickets = [];
 do {
 
     console.log(`=================================
@@ -26,9 +27,7 @@ do {
             displayTrips();
             break;
         case (2):
-            let passengerName = prompt("Enter passenger name : ");
-            let tripID = Number(prompt("Entrer Trip ID : "));
-            
+            console.log(buyTicket());
             break;
         case (3):
 
@@ -72,23 +71,42 @@ function displayTrips() {
 function getTripId(tripID) {
     for (let i = 0; i < trips.length; i++) {
         if (trips[i].id == tripID) {
-            if (trips[i].availableSeats > 0) {
-                return trips[i];
-            }
+            return trips[i];
         }
     }
-    return "trip not find";
+    return false;
 }
-let targetTrip = getTripId(tripID);
+
 function createTicket(targetTrip, nameOfPassenger) {
-        let ticket = {
-                id: tickets.length + 1,
-                passengerName: nameOfPassenger,
-                tripId: targetTrip.id,
-                seatNumber: 51 - targetTrip.availableSeats,
-                price: targetTrip.price
-            };
-            targetTrip.availableSeats--;
-            tickets[tickets.length] = ticket;
-        return tickets;
+    let ticket = {
+        id: tickets.length + 1,
+        passengerName: nameOfPassenger,
+        tripId: targetTrip.id,
+        seatNumber: 51 - targetTrip.availableSeats,
+        price: targetTrip.price
+    };
+    targetTrip.availableSeats--;
+    tickets[tickets.length] = ticket;
+
+    return `
+    Ticket purchased successfully.
+    ===================================
+    id : #${ticket.id}
+    passenger name  : ${nameOfPassenger}
+    trip Id : ${ticket.tripId}
+    seatNumber : ${ticket.seatNumber}
+    price : ${ticket.price}`;
+}
+function buyTicket() {
+    let nameOfPassenger = prompt("Enter passenger name : ");
+    let tripID = Number(prompt("Entrer Trip ID : "));
+    let targetTrip = getTripId(tripID);
+    if (targetTrip == false) {
+        return "trip not found !";
+    }
+    if (targetTrip.availableSeats <= 0) {
+        return "train is full .";
+    }
+
+    return createTicket(targetTrip, nameOfPassenger);
 }
