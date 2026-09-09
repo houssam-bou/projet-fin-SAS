@@ -242,3 +242,14 @@ export function buyTicket() {
 
     return createTicket(targetTrip, nameOfPassenger);
 }
+export function displayTickets() {
+    console.log("=== TICKETS ===");
+    for (let i = 0; i < tickets.length; i++) {
+        console.log(`
+    id : #${tickets[i].id}
+    passenger name  : ${tickets[i].passengerName}
+    trip Id : ${tickets[i].tripId}
+    seatNumber : ${tickets[i].seatNumber}
+    price : ${tickets[i].price}`);
+    }
+}

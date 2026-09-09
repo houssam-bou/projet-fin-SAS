@@ -1,6 +1,6 @@
 import promptsync from "prompt-sync";
 let prompt = promptsync();
-import { trips, close, displayTrips, getTripId, createTicket, buyTicket , tickets} from "./building_function.js";
+import { trips, close, displayTrips, getTripId, createTicket, buyTicket, tickets, displayTickets } from "./building_function.js";
 
 
 let choix;
@@ -30,7 +30,7 @@ do {
             console.log(buyTicket());
             break;
         case (3):
-
+            displayTickets();
             break;
         case (4):
 

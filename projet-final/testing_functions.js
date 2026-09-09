@@ -1,4 +1,5 @@
-let prompt = require("prompt-sync")();
+import promptsync from "prompt-sync";
+let prompt = promptsync();
 const trips = [
     {
         id: 1,
@@ -54,5 +55,17 @@ function buyTicket(targetTrip, createTicket) {
 
     return createTicket(targetTrip, nameOfPassenger);
 }
+//<==>
 
-console.log(buyTicket(targetTrip, createTicket));
+function displayTickets() {
+    console.log("=== TICKETS ===");
+    for (let i = 0; i < tickets.length; i++) {
+        console.log(`
+    id : #${tickets[i].id}
+    passenger name  : ${tickets[i].passengerName}
+    trip Id : ${tickets[i].tripId}
+    seatNumber : ${tickets[i].seatNumber}
+    price : ${tickets[i].price}`);
+    }
+}
+displayTickets();
