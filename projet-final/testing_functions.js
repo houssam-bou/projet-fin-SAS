@@ -25,11 +25,10 @@ let tripID = Number(prompt("Entrer Trip ID : "));
 function getTripId(tripID) {
     for (let i = 0; i < trips.length; i++) {
         if (trips[i].id == tripID) {
-            if (trips[i].availableSeats > 0) {
-                return trips[i];
-            }
+            return trips[i];
         }
     }
+    return false;
 }
 let targetTrip = getTripId(tripID);
 function createTicket(targetTrip, nameOfPassenger) {
@@ -45,18 +44,15 @@ function createTicket(targetTrip, nameOfPassenger) {
     return tickets;
 }
 
-function buyTicket(targetTrip, createTicket)
-{
-if (targetTrip != tripID)
-{
-    return "trip not found !";
-}
-if (targetTrip.availableSeats < 0)
-{
-    return "train is full .";
-}
+function buyTicket(targetTrip, createTicket) {
+    if (targetTrip == false) {
+        return "trip not found !";
+    }
+    if (targetTrip.availableSeats <= 0) {
+        return "train is full .";
+    }
 
     return createTicket(targetTrip, nameOfPassenger);
 }
 
-console.log(buyTicket(targetTrip,createTicket));
+console.log(buyTicket(targetTrip, createTicket));

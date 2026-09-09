@@ -1,3 +1,6 @@
+import promptsync from "prompt-sync";
+let prompt = promptsync();
+export let tickets = [];
 export const trips = [
     {
         id: 1,
@@ -180,3 +183,62 @@ export const trips = [
         availableSeats: 50
     }
 ];
+export function close() {
+    console.log("_____________________");
+    console.log("Vous avez quitté le programme.");
+    console.log("_____________________");
+    process.exit();
+}
+export function displayTrips() {
+    console.log("=== AVAILABLE TRIPS ===");
+    for (let i = 0; i < trips.length; i++) {
+        console.log("============================================");
+        console.log(`#${trips[i].id} ${trips[i].departure} ==> ${trips[i].destination}`);
+        console.log(`departure : ${trips[i].departureTime}`);
+        console.log(`arrival : ${trips[i].arrivalTime}`);
+        console.log(`price : ${trips[i].price}`);
+        console.log(`Available seats : ${trips[i].availableSeats} `);
+    }
+}
+export function getTripId(tripID) {
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].id == tripID) {
+            return trips[i];
+        }
+    }
+    return false;
+}
+
+export function createTicket(targetTrip, nameOfPassenger) {
+    let ticket = {
+        id: tickets.length + 1,
+        passengerName: nameOfPassenger,
+        tripId: targetTrip.id,
+        seatNumber: 51 - targetTrip.availableSeats,
+        price: targetTrip.price
+    };
+    targetTrip.availableSeats--;
+    tickets[tickets.length] = ticket;
+
+    return `
+    Ticket purchased successfully.
+    ===================================
+    id : #${ticket.id}
+    passenger name  : ${nameOfPassenger}
+    trip Id : ${ticket.tripId}
+    seatNumber : ${ticket.seatNumber}
+    price : ${ticket.price}`;
+}
+export function buyTicket() {
+    let nameOfPassenger = prompt("Enter passenger name : ");
+    let tripID = Number(prompt("Entrer Trip ID : "));
+    let targetTrip = getTripId(tripID);
+    if (targetTrip == false) {
+        return "trip not found !";
+    }
+    if (targetTrip.availableSeats <= 0) {
+        return "train is full .";
+    }
+
+    return createTicket(targetTrip, nameOfPassenger);
+}
