@@ -339,9 +339,5 @@ export function viewStatistics() {
     console.log(`Total revenue : ${totalRevenue}`);
 
     let countTickets = 0;
-    for (let i = 0; i < tickets.length; i++) {
-        for (let j = 0; j < tickets.length; j++)
-            if (tickets)
-    }
 
 }
