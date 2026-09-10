@@ -259,14 +259,13 @@ export function displayTickets() {
 }
 export function cancelTicket() {
     let ticketId = Number(prompt("enter ticket ID : "));
-    let generatedTicket;
+    let generatedTicket = [];
     for (let i = 0; i < tickets.length; i++) {
         if (tickets[i].id == ticketId) {
             generatedTicket = tickets[i];
             tickets.splice(i, 1);
             break;
         }
-
     }
     if (!generatedTicket) {
         return "Ticket not found.";
@@ -282,7 +281,7 @@ export function searchForTicket() {
         if (nameOfPassenger == tickets[i].passengerName) {
             searchingTicket.push(tickets[i]);
         }
-        if (searchingTicket.length == 0) {
+        if (searchingTicket.length <= 0) {
             return "Ticket not found.";
         }
     }
@@ -300,4 +299,32 @@ export function searchForTicket() {
     `
     }
     return result;
+}
+export function filterTrip()
+{
+    let departureCity = prompt("enter departure city : ");
+    let filtringDeparture = [];
+    for (let i = 0; i < trips.length ; i++)
+    {
+        if (departureCity == trips[i].departure)
+        {
+            filtringDeparture.push(trips[i]);
+        }
+        if (filtringDeparture.length <= 0)
+        {
+            return "departure not found ?";
+        }
+    }
+    let result = "";
+    for (let i = 0; i < filtringDeparture.length ; i++)
+    {
+        result += `===================================
+Result:
+${filtringDeparture[i].departure} ==> ${filtringDeparture[i].destination} :  ${filtringDeparture[i].price} Dh
+`
+    }
+    return `
+===================================
+    Departure city : ${departureCity}
+    ${result}`;
 }
