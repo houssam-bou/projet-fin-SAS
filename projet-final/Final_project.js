@@ -3,7 +3,8 @@ let prompt = promptsync();
 import {
     trips, close, displayTrips, getTripId,
     createTicket, buyTicket, tickets, displayTickets, cancelTicket,
-    searchForTicket, filterTrip
+    searchForTicket, filterTrip,
+    SortTrip
 } from "./building_function.js";
 
 let choix;
@@ -45,7 +46,7 @@ do {
             console.log(filterTrip());
             break;
         case (7):
-
+            SortTrip();
             break;
         case (0):
             close();

@@ -92,8 +92,8 @@ function cancelTicket()
     return "ticket cancelled successfully";
 
 }
-displayTickets();
-console.log(cancelTicket());
+// displayTickets();
+// console.log(cancelTicket());
 
 
 //<==>
@@ -109,3 +109,18 @@ function searchForTicket()
     }
     return searchingTicket;
 }
+function SortTrip() {
+    for (let i = 0; i < trips.legnth; i++) {
+        for (let j = 0; j < trips.length; j++) {
+            if (trips[i].price < trips[j].price) {
+                let swap = trips[i];
+                trips[i] = trips[j];
+                trips[j] = swap;
+            }
+        }
+    }
+    for (let i = 0; i < trips.length; i++) {
+        console.log(`${trips[i]} `);
+    }
+}
+SortTrip();

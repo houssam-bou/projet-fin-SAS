@@ -200,9 +200,9 @@ export function displayTrips() {
         console.log(`Available seats : ${trips[i].availableSeats} `);
     }
 }
-export function getTripId(tripID) {
+export function getTripId(inputId) {
     for (let i = 0; i < trips.length; i++) {
-        if (trips[i].id == tripID) {
+        if (trips[i].id == inputId) {
             return trips[i];
         }
     }
@@ -234,8 +234,8 @@ export function createTicket(targetTrip, nameOfPassenger) {
 }
 export function buyTicket() {
     let nameOfPassenger = prompt("Enter passenger name : ");
-    let tripID = Number(prompt("Entrer Trip ID : "));
-    let targetTrip = getTripId(tripID);
+    let inputId = Number(prompt("Entrer Trip ID : "));
+    let targetTrip = getTripId(inputId);
     if (targetTrip == false) {
         return "trip not found !";
     }
@@ -288,7 +288,7 @@ export function searchForTicket() {
     let result = "";
 
     for (let i = 0; i < searchingTicket.length; i++) {
-    result += `
+        result += `
 ===================================
     id : #${searchingTicket[i].id}
     passenger name : ${searchingTicket[i].passengerName}
@@ -300,24 +300,19 @@ export function searchForTicket() {
     }
     return result;
 }
-export function filterTrip()
-{
+export function filterTrip() {
     let departureCity = prompt("enter departure city : ");
     let filtringDeparture = [];
-    for (let i = 0; i < trips.length ; i++)
-    {
-        if (departureCity == trips[i].departure)
-        {
+    for (let i = 0; i < trips.length; i++) {
+        if (departureCity == trips[i].departure) {
             filtringDeparture.push(trips[i]);
         }
-        if (filtringDeparture.length <= 0)
-        {
+        if (filtringDeparture.length <= 0) {
             return "departure not found ?";
         }
     }
     let result = "";
-    for (let i = 0; i < filtringDeparture.length ; i++)
-    {
+    for (let i = 0; i < filtringDeparture.length; i++) {
         result += `===================================
 Result:
 ${filtringDeparture[i].departure} ==> ${filtringDeparture[i].destination} :  ${filtringDeparture[i].price} Dh
@@ -327,4 +322,21 @@ ${filtringDeparture[i].departure} ==> ${filtringDeparture[i].destination} :  ${f
 ===================================
     Departure city : ${departureCity}
     ${result}`;
+}
+export function SortTrip() {
+    for (let i = 0; i < trips.length; i++) {
+        for (let j = 0; j < trips.length; j++) {
+            if (trips[i].price < trips[j].price) {
+                let swap = trips[i];
+                trips[i] = trips[j];
+                trips[j] = swap;
+            }
+        }
+    }
+    for (let i = 0; i < trips.length; i++) {
+        console.log(`===================================
+${trips[i].departure} ==> ${trips[i].destination} : ${trips[i].price} Dh
+`);
+    }
+
 }
