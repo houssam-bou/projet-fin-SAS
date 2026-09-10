@@ -228,7 +228,7 @@ export function buyTicket() {
     let nameOfPassenger = prompt("Enter passenger name : ");
     let inputId = Number(prompt("Entrer Trip ID : "));
     let targetTrip = getTripId(inputId);
-    if (targetTrip == false) {
+    if (!targetTrip) {
         return "trip not found !";
     }
     if (targetTrip.availableSeats <= 0) {
@@ -271,11 +271,11 @@ export function searchForTicket() {
     let searchingTicket = [];
     for (let i = 0; i < tickets.length; i++) {
         if (nameOfPassenger == tickets[i].passengerName) {
-            searchingTicket.push(tickets[i]);
+            searchingTicket[searchingTicket.length] = tickets[i];
         }
-        if (searchingTicket.length <= 0) {
-            return "Ticket not found.";
-        }
+    }
+    if (searchingTicket.length <= 0) {
+        return "Ticket not found.";
     }
     let result = "";
 
@@ -297,11 +297,12 @@ export function filterTrip() {
     let filtringDeparture = [];
     for (let i = 0; i < trips.length; i++) {
         if (departureCity == trips[i].departure) {
-            filtringDeparture.push(trips[i]);
+            filtringDeparture[filtringDeparture.length] = trips[i];
         }
-        if (filtringDeparture.length <= 0) {
-            return "departure not found ?";
-        }
+
+    }
+    if (filtringDeparture.length <= 0) {
+        return "departure not found ?";
     }
     let result = "";
     for (let i = 0; i < filtringDeparture.length; i++) {
@@ -326,18 +327,27 @@ export function SortTrip() {
         }
     }
     console.table(trips);
-
+    for (let i = 0; i < trips.length; i++) {
+        for (let j = 0; j < trips.length; j++) {
+            if (trips[i].id < trips[j].id) {
+                let swap = trips[i];
+                trips[i] = trips[j];
+                trips[j] = swap;
+            }
+        }
+    }
 }
 export function viewStatistics() {
     let soldeTickets = tickets.length;
-    console.log(`Total number of tickets : ${soldeTickets} `);
+    console.log(`
+        ===================================
+        Total number of tickets : ${soldeTickets} `);
 
     let totalRevenue = 0;
     for (let i = 0; i < tickets.length; i++) {
         totalRevenue += tickets[i].price;
     }
-    console.log(`Total revenue : ${totalRevenue}`);
-
-    let countTickets = 0;
-
+    console.log(`
+        ===================================
+        Total revenue : ${totalRevenue}`);
 }
