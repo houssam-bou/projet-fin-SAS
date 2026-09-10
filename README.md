@@ -1,8 +1,8 @@
-# 🚆 Railway Manager
+#  Railway Manager
 
 A JavaScript console application for managing train trips and tickets.
 
-## 📌 Features
+##  Features
 
 - Display available trips
 - Buy a ticket
@@ -13,13 +13,13 @@ A JavaScript console application for managing train trips and tickets.
 - Sort trips by price
 - View statistics
 
-## 🛠️ Technologies
+##  Technologies
 
 - JavaScript
 - Node.js
 - prompt-sync
 
-## ▶️ Run the project
+##  Run the project
 
 Install the dependencies:
 
