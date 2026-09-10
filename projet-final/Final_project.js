@@ -11,19 +11,21 @@ let choix;
 do {
 
     console.log(
-        `=================================
-        RAILWAY MANAGER
-=================================`)
+        `      =================================
+              RAILWAY MANAGER
+      =================================`)
 
 
-    console.log("1. Display trips");
-    console.log("2. Buy a ticket");
-    console.log("3. Display tickets");
-    console.log("4. Cancel a ticket");
-    console.log("5. Search for a ticket");
-    console.log("6. Filter trips");
-    console.log("7. Sort trips");
-    console.log("0. Exit");
+    console.log(`
+        1. Display trips
+        2. Buy a ticket
+        3. Display tickets
+        4. Cancel a ticket
+        5. Search for a ticket
+        6. Filter trips
+        7. Sort trips
+        0. Exit
+        `);
 
     choix = Number(prompt("enter your choice : "));
     switch (choix) {

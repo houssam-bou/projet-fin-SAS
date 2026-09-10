@@ -191,14 +191,7 @@ export function close() {
 }
 export function displayTrips() {
     console.log("=== AVAILABLE TRIPS ===");
-    for (let i = 0; i < trips.length; i++) {
-        console.log("============================================");
-        console.log(`#${trips[i].id} ${trips[i].departure} ==> ${trips[i].destination}`);
-        console.log(`departure : ${trips[i].departureTime}`);
-        console.log(`arrival : ${trips[i].arrivalTime}`);
-        console.log(`price : ${trips[i].price}`);
-        console.log(`Available seats : ${trips[i].availableSeats} `);
-    }
+    console.table(trips);
 }
 export function getTripId(inputId) {
     for (let i = 0; i < trips.length; i++) {
@@ -221,7 +214,6 @@ export function createTicket(targetTrip, nameOfPassenger) {
     };
     targetTrip.availableSeats--;
     tickets[tickets.length] = ticket;
-
     return `
     Ticket purchased successfully.
     ===================================
@@ -333,10 +325,6 @@ export function SortTrip() {
             }
         }
     }
-    for (let i = 0; i < trips.length; i++) {
-        console.log(`===================================
-${trips[i].departure} ==> ${trips[i].destination} : ${trips[i].price} Dh
-`);
-    }
+    console.table(trips);
 
 }
