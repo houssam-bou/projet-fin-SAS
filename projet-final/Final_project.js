@@ -4,7 +4,7 @@ import {
     trips, close, displayTrips, getTripId,
     createTicket, buyTicket, tickets, displayTickets, cancelTicket,
     searchForTicket, filterTrip,
-    SortTrip
+    SortTrip, viewStatistics
 } from "./building_function.js";
 
 let choix;
@@ -24,6 +24,7 @@ do {
         5. Search for a ticket
         6. Filter trips
         7. Sort trips
+        8. View statistics
         0. Exit
         `);
 
@@ -49,6 +50,9 @@ do {
             break;
         case (7):
             SortTrip();
+            break;
+        case (8):
+            viewStatistics();
             break;
         case (0):
             close();

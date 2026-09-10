@@ -328,3 +328,20 @@ export function SortTrip() {
     console.table(trips);
 
 }
+export function viewStatistics() {
+    let soldeTickets = tickets.length;
+    console.log(`Total number of tickets : ${soldeTickets} `);
+
+    let totalRevenue = 0;
+    for (let i = 0; i < tickets.length; i++) {
+        totalRevenue += tickets[i].price;
+    }
+    console.log(`Total revenue : ${totalRevenue}`);
+
+    let countTickets = 0;
+    for (let i = 0; i < tickets.length; i++) {
+        for (let j = 0; j < tickets.length; j++)
+            if (tickets)
+    }
+
+}
